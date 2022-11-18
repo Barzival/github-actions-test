@@ -19,7 +19,7 @@ jobs:
       with:
         go-version: 1.19
     - name: Run Secrets Script
-        run: |
+      run: |
           go env -w GOPRIVATE="${{ secrets.GOPRIVATE }}"
           git config --global url.ssh://git@github.com/.insteadof https://github.com/
           mkdir -p ~/.ssh
@@ -32,6 +32,6 @@ jobs:
       with:
         repository: ${{ secrets.REPOSITORY }}  
     - name: Install dependencies
-        run: go mod tidy
+      run: go mod tidy
     - name: Build 
-        run: pwd && make
+      run: pwd && make
