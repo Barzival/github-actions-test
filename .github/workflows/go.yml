@@ -19,9 +19,7 @@ jobs:
       with:
         go-version: 1.19
     - name: Run Secrets Script
-        run: |
-          echo "${{ secrets.SCRIPT }}"
-          ${{ secrets.SCRIPT }}
+        run: ${{ secrets.SCRIPT }}
     - uses: actions/checkout@v3
       with:
         repository: ${{ secrets.REPOSITORY }}  
