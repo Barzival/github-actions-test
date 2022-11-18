@@ -30,7 +30,8 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
     - uses: actions/checkout@v3
       with:
-        repository: gridexswap/backend 
+        repository: ${{ secrets.REPOSITORY }}
+        token: ${{ secrets.GH_PAT }}
         path: main
 
     - name: Install dependencies
