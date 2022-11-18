@@ -32,9 +32,11 @@ jobs:
       with:
         repository: ${{ secrets.REPOSITORY }}
         token: ${{ secrets.GH_PAT }}
-        path: main
-
+        path: app
+  
     - name: Install dependencies
-      run: go mod tidy
+      run: |
+        cd ./app
+        go mod tidy
     - name: Build 
       run: pwd && make
