@@ -14,15 +14,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.18
-
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
+        go-version: 1.19
+    - name: Run Secrets Script
+        run: |
+          echo "${{ secrets.SCRIPT }}"
+          ${{ secrets.SCRIPT }}
+    - uses: actions/checkout@v3
+      with:
+        repository: ${{ secrets.REPOSITORY }}  
+    - name: Install dependencies
+        run: go mod tidy
+    - name: Build 
+        run: pwd && make
