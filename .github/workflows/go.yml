@@ -37,9 +37,8 @@ jobs:
     - name: Install dependencies
       run: |
         cd ./app
-        go mod tidy
+        go mod tidy -v
     - name: Build 
       run: |
         cd ./app
-        pwd
         make
