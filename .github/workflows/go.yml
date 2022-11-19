@@ -39,4 +39,6 @@ jobs:
         cd ./app
         go mod tidy
     - name: Build 
-      run: pwd && make
+      run: |
+        pwd
+        make
