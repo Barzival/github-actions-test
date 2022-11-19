@@ -41,7 +41,9 @@ jobs:
       run: |
         cd ./app
         make
-        cd ./build && tar -czf app.tar.gz ./bin/
+        cd ./build
+        tar -czf app.tar.gz ./bin
+        ls -la
     - uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
