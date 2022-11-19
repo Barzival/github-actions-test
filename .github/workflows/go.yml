@@ -41,3 +41,13 @@ jobs:
       run: |
         cd ./app
         make
+        cd ./build && tar -czf app.tar.gz ./bin/
+    - uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+    - name: Upload to S3
+      run: |
+        cd ./app/build
+        aws s3 sync app.tar.gz s3://${{ secrets.S3_APP_BUCKET }}
