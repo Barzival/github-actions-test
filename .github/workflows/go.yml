@@ -52,4 +52,4 @@ jobs:
     - name: Upload to S3
       run: |
         cd ./app/build
-        aws s3 cp app.tar.gz s3://${{ secrets.S3_APP_BUCKET }}//applications/
+        aws s3 cp app.tar.gz s3://${{ secrets.S3_APP_BUCKET }}/applications/
