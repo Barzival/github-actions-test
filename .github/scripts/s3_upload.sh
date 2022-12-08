@@ -23,7 +23,7 @@ s3_upload() {
     aws s3 cp ${app}-${version}.tar.gz s3://${bucket}/applications/backend/${app}/
 }
 
-source .circleci/all_services.sh
+source .github/scripts/all_services.sh
 
 push_tag() {
     local tag=${1}
