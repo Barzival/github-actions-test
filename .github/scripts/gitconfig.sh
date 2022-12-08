@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 go env -w GOPRIVATE="${GOPRIVATE}"
 git config --global url.ssh://git@github.com/.insteadof https://github.com/
 mkdir -p ~/.ssh
