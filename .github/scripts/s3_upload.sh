@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bucket=$S3_APP_BUCKET
+bucket=${S3_APP_BUCKET}
 workspace_dir=`pwd`
 
 
