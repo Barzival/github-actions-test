@@ -21,8 +21,8 @@ jobs:
     - name: Configure git
       run: bash ${GITHUB_WORKSPACE}/.github/scripts/gitconfig.sh
       env:
-        GOPRIVATE: ${secret.GOPRIVATE}
-        ED25519_KEY: ${secret.ED25519_KEY}
+        GOPRIVATE: ${secrets.GOPRIVATE}
+        ED25519_KEY: ${secrets.ED25519_KEY}
 
     - uses: actions/checkout@v3
       with:
