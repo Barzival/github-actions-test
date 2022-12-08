@@ -14,7 +14,7 @@ s3_upload() {
     rm -rf ${package_dir}
     mkdir -p ${package_dir}
 
-    cp .build/bin/${app} ${package_dir}/
+    cp build/bin/${app} ${package_dir}/
 
     cd ${package_dir}
 
