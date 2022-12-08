@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 bucket=$S3_APP_BUCKET
-current_dir=`pwd`
+workspace_dir=`pwd`
 
 
 s3_upload() {
-    cd ${current_dir}
+    cd ${workspace_dir}/app/
 
     local app=${1}
     local version=${2}
