@@ -17,16 +17,12 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.19
-    - name: Set up goprivate
-      run: |
-          go env -w GOPRIVATE="${{ secrets.GOPRIVATE }}"
-          git config --global url.ssh://git@github.com/.insteadof https://github.com/
-          mkdir -p ~/.ssh
-          touch ~/.ssh/id_ed25519
-          echo "${{ secrets.ED25519_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keygen -y -f ~/.ssh/id_ed25519 > ~/.ssh/id_ed25519.pub
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+    - name: Configure git
+      run: bash ${GITHUB_WORKSPACE}/.github/script/gitconfig.sh
+      env:
+        GOPRIVATE: ${secret.GOPRIVATE}
+        ED25519_KEY: ${secret.ED25519_KEY}
+
     - uses: actions/checkout@v3
       with:
         repository: ${{ secrets.REPOSITORY }}
@@ -41,8 +37,6 @@ jobs:
       run: |
         cd ./app
         make
-        cd ./build
-        tar -czf app.tar.gz ./bin
 
     - uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -51,5 +45,5 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Upload to S3
       run: |
-        cd ./app/build
-        aws s3 cp app.tar.gz s3://${{ secrets.S3_APP_BUCKET }}/applications/
+      cd ./app
+      bash ${GITHUB_WORKSPACE}/.github/script/s3_upload.sh
