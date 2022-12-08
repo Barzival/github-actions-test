@@ -18,7 +18,7 @@ jobs:
       with:
         go-version: 1.19
     - name: Configure git
-      run: bash ${GITHUB_WORKSPACE}/.github/script/gitconfig.sh
+      run: bash ${GITHUB_WORKSPACE}/.github/scripts/gitconfig.sh
       env:
         GOPRIVATE: ${secret.GOPRIVATE}
         ED25519_KEY: ${secret.ED25519_KEY}
@@ -45,4 +45,4 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Upload to S3
       run: |
-        bash ${GITHUB_WORKSPACE}/.github/script/s3_upload.sh
+        bash ${GITHUB_WORKSPACE}/.github/scripts/s3_upload.sh
